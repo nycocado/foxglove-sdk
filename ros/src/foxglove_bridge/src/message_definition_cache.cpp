@@ -10,7 +10,7 @@
 #include <unordered_set>
 #include <utility>
 
-#include <ament_index_cpp/get_package_share_path.hpp>
+#include <ament_index_cpp/get_package_share_directory.hpp>
 #include <ament_index_cpp/get_resource.hpp>
 #include <rcutils/logging_macros.h>
 
@@ -215,7 +215,7 @@ const MessageSpec& MessageDefinitionCache::load_message_spec(
 
   // Get the package share directory, or throw a PackageNotFoundError
   std::filesystem::path share_dir;
-  share_dir = ament_index_cpp::get_package_share_path(package);
+  share_dir = ament_index_cpp::get_package_share_directory(package);
 
   // Get the rosidl_interfaces index contents for this package
   std::string index_contents;
