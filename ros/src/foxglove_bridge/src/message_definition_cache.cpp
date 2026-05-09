@@ -219,12 +219,9 @@ const MessageSpec& MessageDefinitionCache::load_message_spec(
 
   // Get the rosidl_interfaces index contents for this package
   std::string index_contents;
-  ament_index_cpp::PathWithResource path_with_resource =
-    ament_index_cpp::get_resource("rosidl_interfaces", package);
-  if (path_with_resource.resourcePath == std::nullopt) {
+  if (!ament_index_cpp::get_resource("rosidl_interfaces", package, index_contents)) {
     throw DefinitionNotFoundError(definition_identifier.package_resource_name);
   }
-  index_contents = path_with_resource.contents;
 
   // Find the first line that ends with the filename we're looking for
   const auto lines = split_string(index_contents);
